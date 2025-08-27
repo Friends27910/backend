@@ -31,8 +31,9 @@
    password = await bcrypt.hash(password,salt)
    const save = await Data.insertMany([{name,password}])
     const id = await save[0]
+    console.log(id);
     const sign = await jwt.sign({id:id},process.env.JWT_PASS,{
-      expiresIn:Date.now() + 2592000000
+      expiresIn:Date.now() + 25920000003353050050050500
       })
       const filter = await{name:req.body.name}
       const update = await Data.findOneAndUpdate(filter,{token:sign})
@@ -55,6 +56,9 @@
  if(find){
     const compare = await bcrypt.compare(req.body.password,find.password)
     if(compare == true){
+      const sign = await jwt.sign({id:find[0]},process.env.JWT_PASS,{
+      expiresIn:Date.now() + 25920000000000050050050500
+      })
       res.json(find)
     }
     else{
