@@ -6,7 +6,7 @@ require("dotenv").config()
 const PORT = process.env.PORT;
 app.use(express.json())
 app.use(cors({
-  origin:'http://localhost:5173',
+  origin:'https://frontend-xi-eight-93.vercel.app',
   methods : ["GET","POST","PATCH","PUT"]
 }))
 app.get("/",(req,res)=>{
@@ -14,5 +14,5 @@ app.get("/",(req,res)=>{
 })
 app.use("/Api",require("./Routes/Api/Register.js"))
 app.listen(PORT,()=>{
-  console.log(`Your server is running on ${PORT}`);
+  console.log(`Your server is running on ${PORT} ${Db}`);
 })
