@@ -14,5 +14,5 @@ app.get("/",(req,res)=>{
 })
 app.use("/Api",require("./Routes/Api/Register.js"))
 app.listen(PORT,()=>{
-  console.log(`Your server is running on ${PORT} ${Db}`);
+  console.log(`Your server is running on ${PORT} `);
 })

@@ -22,7 +22,7 @@
      var {name,password} = req.body 
      console.log(req.body.name)
      var check = await Data.findOne({name:req.body.name})
-   
+     console.log(check,"This is check")
      if(check){
    res.status(400).json({error:"user already exists.....!"})
      }
@@ -30,10 +30,9 @@
      else{
    password = await bcrypt.hash(password,salt)
    const save = await Data.insertMany([{name,password}])
-    const id = await save[0]._id
-    console.log(id)
+    const id = await save[0]
     const sign = await jwt.sign({id:id},process.env.JWT_PASS,{
-      expiresIn: Math.floor(Date.now() / 1000) + (60 * 6000000000000),
+      expiresIn:process.env.JWT_EXPIRES
       })
       const filter = await{name:req.body.name}
       const update = await Data.findOneAndUpdate(filter,{token:sign})
