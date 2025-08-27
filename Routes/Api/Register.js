@@ -32,7 +32,7 @@
    const save = await Data.insertMany([{name,password}])
     const id = await save[0]
     const sign = await jwt.sign({id:id},process.env.JWT_PASS,{
-      expiresIn:process.env.JWT_EXPIRES
+      expiresIn:Date.now() + 2592000000
       })
       const filter = await{name:req.body.name}
       const update = await Data.findOneAndUpdate(filter,{token:sign})
